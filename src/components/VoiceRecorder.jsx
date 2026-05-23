@@ -1,13 +1,26 @@
-import React, { useState } from "react";
+import React, { useMemo, useState, useRef } from "react";
 import { AudioRecorder } from "react-audio-voice-recorder";
+import { useWavesurfer } from "@wavesurfer/react";
+import Timeline from "wavesurfer.js/dist/plugins/timeline.esm.js";
 const { diffWords } = require("diff");
 
 function VoiceRecorder() {
+  const containerRef = useRef(null);
+
   const [audioURL, setAudioURL] = useState(null);
   const [transcript, setTranscript] = useState("");
   const [score, setScore] = useState(null);
   const [diffResult, setDiffResult] = useState([]);
   const originalText = "Today I am learning English pronunciation";
+
+  const { wavesurfer, isPlaying, currentTime } = useWavesurfer({
+    container: containerRef,
+    height: 100,
+    waveColor: "rgb(200, 0, 200)",
+    progressColor: "rgb(100, 0, 100)",
+    url: audioURL, //current URL
+    plugins: useMemo(() => [Timeline.create()], []),
+  });
 
   const addAudioElement = async (blob) => {
     try {
@@ -76,6 +89,7 @@ function VoiceRecorder() {
       {audioURL && (
         <div style={{ marginTop: 20 }}>
           <audio src={audioURL} controls />
+          <div ref={containerRef} />
         </div>
       )}
 

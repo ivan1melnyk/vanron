@@ -1,4 +1,5 @@
 import VoiceRecorder from "./components/VoiceRecorder";
+import WaveSurface from "./components/WaveSurface";
 
 import logo from "./microphone-round.svg";
 import "./App.css";
@@ -8,7 +9,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <VoiceRecorder />
+        <WaveSurface />
       </header>
     </div>
   );
