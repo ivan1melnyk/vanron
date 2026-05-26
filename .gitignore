@@ -3,8 +3,10 @@
 # dependencies
 /node_modules
 backend/node_modules
+backend/credentials
 /.pnp
 .pnp.js
+
 
 # testing
 /coverage

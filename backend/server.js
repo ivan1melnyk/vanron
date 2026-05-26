@@ -16,7 +16,7 @@ const upload = multer({
 });
 
 const client = new speech.SpeechClient({
-  keyFilename: path.join(__dirname, "credentials.json"),
+  keyFilename: path.join(__dirname, "credentials/credentials.json"),
 });
 
 app.post("/transcribe", upload.single("audio"), async (req, res) => {
